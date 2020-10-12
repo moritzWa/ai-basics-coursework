@@ -70,8 +70,22 @@ class Frontier:
         if algorithm == "HS":
             # TODO: implement heuristic search
             # Note that you can access the goal state like this:
-            # self.goal
-            return
+            print("------before--------")
+
+            for obj in self.frontier:
+                print("obj1 dist y", abs(
+                    obj.state[0]-self.goal[0]), "obj1 dist x", abs(obj.state[1]-self.goal[1]))
+
+            sorted(self.frontier, key=lambda frontNode: abs(
+                frontNode.state[0]-self.goal[0])+abs(frontNode.state[1]-self.goal[1]))
+
+            print("------after--------")
+
+            for obj in self.frontier:
+                print("obj1 dist y", abs(
+                    obj.state[0]-self.goal[0]), "obj1 dist x", abs(obj.state[1]-self.goal[1]))
+
+            return self.frontier[0]
 
 
 class Maze:
@@ -183,7 +197,7 @@ def main():
     if len(sys.argv) != 3:
         message = """You didn't specify the right amount of inputs.
 Usage: python maze.py <maze-file-name>.txt \"<Algorithm>\"
-where <Algorithm> can be DFS (Depth-first search), 
+where <Algorithm> can be DFS (Depth-first search),
 BFS (Breadth-first search), or HS (Heuristic search)."""
         sys.exit(message)
 
