@@ -68,23 +68,8 @@ class Frontier:
 
         # heuristic search
         if algorithm == "HS":
-            # TODO: implement heuristic search
-            # Note that you can access the goal state like this:
-            print("------before--------")
-
-            for obj in self.frontier:
-                print("obj1 dist y", abs(
-                    obj.state[0]-self.goal[0]), "obj1 dist x", abs(obj.state[1]-self.goal[1]))
-
-            sorted(self.frontier, key=lambda frontNode: abs(
+            self.frontier = sorted(self.frontier, key=lambda frontNode: abs(
                 frontNode.state[0]-self.goal[0])+abs(frontNode.state[1]-self.goal[1]))
-
-            print("------after--------")
-
-            for obj in self.frontier:
-                print("obj1 dist y", abs(
-                    obj.state[0]-self.goal[0]), "obj1 dist x", abs(obj.state[1]-self.goal[1]))
-
             return self.frontier[0]
 
 

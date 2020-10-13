@@ -21,6 +21,10 @@ def initial_state():
 def player(board):
     """
     Returns player who has the next turn on a board.
+
+    if(empty %2 === 0) return O
+    elis return X
+
     """
     raise NotImplementedError
 
@@ -28,6 +32,13 @@ def player(board):
 def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
+
+    creat set
+
+    loop through b rows
+        loop through b columns 
+            if inpty add lopping position
+
     """
     raise NotImplementedError
 
@@ -35,6 +46,16 @@ def actions(board):
 def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
+
+    action not empty raise exepction
+
+
+    boardDeepCopy = board
+
+    loop through b rows
+        loop through b columns 
+            if action position insert player(board)
+
     """
     raise NotImplementedError
 
@@ -62,6 +83,6 @@ def utility(board):
 
 def minimax(board):
     """
-    Returns the optimal action for the current player on the board.
+    Returns the optimal action for the current player on the board and its utility.
     """
     raise NotImplementedError
