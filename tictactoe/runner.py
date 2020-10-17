@@ -96,7 +96,7 @@ while True:
         if game_over:
             winner = ttt.winner(board)
             if winner is None:
-                title = f"Game Over: Tie."
+                title = "Game Over: Tie."
             else:
                 title = f"Game Over: {winner} wins."
         elif user == player:

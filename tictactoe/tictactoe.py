@@ -21,12 +21,23 @@ def initial_state():
 def player(board):
     """
     Returns player who has the next turn on a board.
-
-    if(empty %2 === 0) return O
-    elis return X
-
+    elis eturn 
     """
-    raise NotImplementedError
+
+    xCounter = 0
+    oCounter = 0
+
+    for i in range(0, len(board)):
+        for j in range(0, len(board[0])):
+            if board[i][j] == X:
+                xCounter += 1
+            elif board[i][j] == O:
+                oCounter += 1
+
+    if xCounter > oCounter:
+        return O
+    else:
+        return X
 
 
 def actions(board):
@@ -71,7 +82,9 @@ def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    raise NotImplementedError
+    """ raise NotImplementedError """
+
+# inputs: terminal board
 
 
 def utility(board):
