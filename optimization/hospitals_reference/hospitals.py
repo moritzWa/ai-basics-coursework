@@ -26,6 +26,7 @@ class Space():
         )
 
         # Remove all houses and hospitals
+        # form house-candidates
         for house in self.houses:
             candidates.remove(house)
         for hospital in self.hospitals:
@@ -60,6 +61,7 @@ class Space():
                     # Generate a neighboring set of hospitals
                     neighbor = self.hospitals.copy()
                     neighbor.remove(hospital)
+
                     neighbor.add(replacement)
 
                     # Check if neighbor is best so far
@@ -196,4 +198,4 @@ for i in range(15):
     s.add_house(random.randrange(s.height), random.randrange(s.width))
 
 # Use local search to determine hospital placement
-hospitals = s.hill_climb(image_prefix="hospitals", log=True)
+hospitals = s.hill_climb(10, image_prefix="hospitals", log=True)
