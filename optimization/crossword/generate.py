@@ -1,4 +1,5 @@
 import sys
+import copy
 
 from crossword import *
 
@@ -91,13 +92,11 @@ class CrosswordCreator():
         """
         self.enforce_node_consistency()
 
-        print("before", self.domains)
+        # print("before", self.domains)
 
         self.ac3()
 
-        self.assignment_complete(dict())
-
-        print("after", self.domains)
+        # print("after", self.domains)
 
         return self.backtrack(dict())
 
@@ -209,7 +208,7 @@ class CrosswordCreator():
         keys = assignment.keys()
         items = assignment.items()
 
-        print("assignment-items", items)
+        # print("assignment-items", items)
 
         # check if value mapping distinct
         for v1 in assignment:
@@ -264,8 +263,26 @@ class CrosswordCreator():
         If no assignment is possible, return None.
         """
 
+        # completed
         if self.assignment_complete(assignment):
             return assignment
+
+        slot_variable = self.select_unassigned_variable(assignment)
+
+        for word_value in self.order_domain_values(slot_variable, assignment):
+            assignment_copy = copy.deepcopy(assignment)
+            # assign
+            assignment_copy[slot_variable] = word_value
+
+            if self.consistent(assignment):
+                assignment[slot_variable] = word_value
+                result = self.backtrack(assignment)
+
+                if result is not None:
+                    return result
+            assignment.pop(slot_variable, None)
+
+        return None
 
 
 def main():
