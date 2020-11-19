@@ -95,6 +95,8 @@ class CrosswordCreator():
 
         self.ac3()
 
+        self.assignment_complete(dict())
+
         print("after", self.domains)
 
         return self.backtrack(dict())
@@ -189,6 +191,15 @@ class CrosswordCreator():
         crossword variable); return False otherwise.
         """
         """ raise NotImplementedError """
+
+        crossword_variables = set(self.crossword.variables)
+        assignment_keys = set(assignment.keys())
+
+        #print("assignment_complete", crossword_variables, assignment_keys)
+
+        if assignment_keys == crossword_variables:
+            return True
+        return False
 
     def consistent(self, assignment):
         """
