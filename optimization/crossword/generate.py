@@ -99,16 +99,16 @@ class CrosswordCreator():
         (Remove any values that are inconsistent with a variable's unary
          constraints; in this case, the length of the word.)
         """
-        print("1", self.domains)
+        #print("1", self.domains)
 
         for slot_variable in self.crossword.variables:
             for word_value in self.crossword.words:
                 if slot_variable.length != len(word_value):
                     self.domains[slot_variable].remove(word_value)
 
-        print("2", self.domains)
+        #print("2", self.domains)
 
-    def revise(self, x, y):
+    def revise(self, slot_variable_x, slot_varibale_y):
         """
         Make variable `x` arc consistent with variable `y`.
         To do so, remove values from `self.domains[x]` for which there is no
@@ -118,6 +118,34 @@ class CrosswordCreator():
         False if no revision was made.
         """
         """ raise NotImplementedError """
+
+        conflict_words = []
+
+        overlap_position = self.crossword.overlaps[slot_variable_x,
+                                                   slot_varibale_y]
+
+        if overlap_position is None:
+            return False
+        else:
+            v1th_char_pos, v2th_char_pos = overlap_position
+
+        # loop through possible words for slot var x e.g. 1
+        for x_word in self.domains[slot_variable_x]:
+            overlap_possible = False
+
+            # loop through possible words for slot var y e.g. 2
+            for y_word in self.domains[slot_varibale_y]:
+                if x_word != y_word and x_word[v1th_char_pos] == y_word[v2th_char_pos]:
+                    overlap_possible = True
+                    break
+
+            if not overlap_possible:
+                conflict_words.append(x_word)
+
+        for word in conflict_words:
+            self.domains[slot_variable_x].remove(word)
+
+        return len(conflict_words) > 0  # TODO or True?
 
     def ac3(self, arcs=None):
         """
