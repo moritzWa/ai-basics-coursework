@@ -99,7 +99,7 @@ class CrosswordCreator():
         (Remove any values that are inconsistent with a variable's unary
          constraints; in this case, the length of the word.)
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def revise(self, x, y):
         """
@@ -110,7 +110,7 @@ class CrosswordCreator():
         Return True if a revision was made to the domain of `x`; return
         False if no revision was made.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def ac3(self, arcs=None):
         """
@@ -121,21 +121,21 @@ class CrosswordCreator():
         Return True if arc consistency is enforced and no domains are empty;
         return False if one or more domains end up empty.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def assignment_complete(self, assignment):
         """
         Return True if `assignment` is complete (i.e., assigns a value to each
         crossword variable); return False otherwise.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def consistent(self, assignment):
         """
         Return True if `assignment` is consistent (i.e., words fit in crossword
         puzzle without conflicting characters); return False otherwise.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def order_domain_values(self, var, assignment):
         """
@@ -144,7 +144,7 @@ class CrosswordCreator():
         The first value in the list, for example, should be the one
         that rules out the fewest values among the neighbors of `var`.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def select_unassigned_variable(self, assignment):
         """
@@ -154,7 +154,7 @@ class CrosswordCreator():
         degree. If there is a tie, any of the tied variables are acceptable
         return values.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
     def backtrack(self, assignment):
         """
@@ -165,7 +165,7 @@ class CrosswordCreator():
 
         If no assignment is possible, return None.
         """
-        raise NotImplementedError
+        """ raise NotImplementedError """
 
 
 def main():

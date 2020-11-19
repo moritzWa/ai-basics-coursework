@@ -39,19 +39,19 @@ class Crossword():
 
     def __init__(self, structure_file, words_file):
 
-        # Determine structure of crossword
+        # Encode structure file as true/false matrix
         with open(structure_file) as f:
             contents = f.read().splitlines()
             self.height = len(contents)
             self.width = max(len(line) for line in contents)
 
             self.structure = []
-            for i in range(self.height):
+            for c in range(self.height):
                 row = []
-                for j in range(self.width):
-                    if j >= len(contents[i]):
+                for r in range(self.width):
+                    if r >= len(contents[c]):
                         row.append(False)
-                    elif contents[i][j] == "_":
+                    elif contents[c][r] == "_":
                         row.append(True)
                     else:
                         row.append(False)
