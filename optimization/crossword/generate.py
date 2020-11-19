@@ -90,7 +90,13 @@ class CrosswordCreator():
         Enforce node and arc consistency, and then solve the CSP.
         """
         self.enforce_node_consistency()
+
+        print("before", self.domains)
+
         self.ac3()
+
+        print("after", self.domains)
+
         return self.backtrack(dict())
 
     def enforce_node_consistency(self):
@@ -99,14 +105,10 @@ class CrosswordCreator():
         (Remove any values that are inconsistent with a variable's unary
          constraints; in this case, the length of the word.)
         """
-        #print("1", self.domains)
-
         for slot_variable in self.crossword.variables:
             for word_value in self.crossword.words:
                 if slot_variable.length != len(word_value):
                     self.domains[slot_variable].remove(word_value)
-
-        #print("2", self.domains)
 
     def revise(self, slot_variable_x, slot_varibale_y):
         """
@@ -131,21 +133,21 @@ class CrosswordCreator():
 
         # loop through possible words for slot var x e.g. 1
         for x_word in self.domains[slot_variable_x]:
-            overlap_possible = False
+            overlaps = False
 
             # loop through possible words for slot var y e.g. 2
             for y_word in self.domains[slot_varibale_y]:
                 if x_word != y_word and x_word[v1th_char_pos] == y_word[v2th_char_pos]:
-                    overlap_possible = True
+                    overlaps = True
                     break
 
-            if not overlap_possible:
+            if not overlaps:
                 conflict_words.append(x_word)
 
         for word in conflict_words:
             self.domains[slot_variable_x].remove(word)
 
-        return len(conflict_words) > 0  # TODO or True?
+        return len(conflict_words) > 0
 
     def ac3(self, arcs=None):
         """
@@ -156,7 +158,30 @@ class CrosswordCreator():
         Return True if arc consistency is enforced and no domains are empty;
         return False if one or more domains end up empty.
         """
-        """ raise NotImplementedError """
+        # no args given => aggretage arcs
+        if arcs is None:
+            arcs = []
+            for slot_variable_x in self.crossword.variables:
+                # loop through neighbors
+                for slot_variable_y in self.crossword.neighbors(slot_variable_x):
+                    arcs.append((slot_variable_x, slot_variable_y))
+
+        while arcs:
+            arc = arcs.pop(0)
+            slot_variable_x, slot_variable_y = arc[0], arc[1]
+
+            # enforce slot_variable arc-consistency
+            if self.revise(slot_variable_x, slot_variable_y):
+
+                # no solution for empty domain
+                if len(self.domains[slot_variable_x]) == 0:
+                    return False
+
+                # appending neighbor-arcs for changed domain
+                for neighbor in self.crossword.neighbors(slot_variable_x) - {slot_variable_y}:
+                    arcs.append((neighbor, slot_variable_x))
+
+        return True
 
     def assignment_complete(self, assignment):
         """
