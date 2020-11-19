@@ -91,12 +91,7 @@ class CrosswordCreator():
         Enforce node and arc consistency, and then solve the CSP.
         """
         self.enforce_node_consistency()
-
-        # print("before", self.domains)
-
         self.ac3()
-
-        # print("after", self.domains)
 
         return self.backtrack(dict())
 
@@ -193,8 +188,6 @@ class CrosswordCreator():
         crossword_variables = set(self.crossword.variables)
         assignment_keys = set(assignment.keys())
 
-        # print("assignment_complete", crossword_variables, assignment_keys)
-
         if assignment_keys == crossword_variables:
             return True
         return False
@@ -207,8 +200,6 @@ class CrosswordCreator():
 
         keys = assignment.keys()
         items = assignment.items()
-
-        # print("assignment-items", items)
 
         # check if value mapping distinct
         for v1 in assignment:
@@ -301,7 +292,6 @@ def main():
     creator = CrosswordCreator(crossword)
     assignment = creator.solve()
 
-    # Print result
     if assignment is None:
         print("No solution.")
     else:
