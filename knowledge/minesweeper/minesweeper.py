@@ -7,7 +7,7 @@ class Minesweeper():
     Minesweeper game representation
     """
 
-    def __init__(self, height=8, width=8, mines=8):
+    def __init__(self, height=4, width=4, mines=4):
 
         # Set initial width, height, and number of mines
         self.height = height
@@ -192,12 +192,14 @@ class MinesweeperAI():
 
         # 1) mark the cell as a move that has been made
         self.moves_made.add(cell)
+
         # 2) mark the cell as safe
         self.mark_safe(cell)
+
         #  3) add new sentence to AI's knowledgebase based on value of `cell` and `count`
 
-        surrounding_cells = []
         # aggregate surrounding cells
+        surrounding_cells = []
         for row in range(cell[0] - 1, cell[0] + 2):
             for col in range(cell[1] - 1, cell[1] + 2):
 
@@ -247,8 +249,9 @@ class MinesweeperAI():
         This function may use the knowledge in self.mines, self.safes
         and self.moves_made, but should not modify any of those values.
         """
+        print("SAVE", self.safes)
+
         if len(self.safes) > 0:
-            print(self.safes)
             return self.safes.pop()
         else:
             return None
@@ -260,3 +263,14 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
+        possible_moves = []
+        for i in range(self.height):
+            for j in range(self.width):
+                move = (i, j)
+                if move not in self.moves_made and move not in self.mines:
+                    possible_moves.append(move)
+        # Make random choice, or return none if no safe moves
+        if possible_moves:
+            return random.choice(possible_moves)
+        else:
+            return None
