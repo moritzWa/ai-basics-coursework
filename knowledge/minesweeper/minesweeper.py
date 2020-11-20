@@ -132,6 +132,7 @@ class Sentence():
         """
         if cell in self.cells:
             self.cells.remove(cell)
+            self.count -= 1
 
 
 class MinesweeperAI():
@@ -188,7 +189,38 @@ class MinesweeperAI():
             5) add any new sentences to the AI's knowledge base
                if they can be inferred from existing knowledge
         """
-        raise NotImplementedError
+
+        # 1) mark the cell as a move that has been made
+        self.moves_made.add(cell)
+        # 2) mark the cell as safe
+        self.mark_safe(cell)
+        #  3) add new sentence to AI's knowledgebase based on value of `cell` and `count`
+
+        surrounding_cells = []
+        # aggregate surrounding cells
+        for row in range(cell[0] - 1, cell[0] + 2):
+            for col in range(cell[1] - 1, cell[1] + 2):
+
+                # add to surrounding when in bound and not cell itself
+                if 0 <= row < self.height and 0 <= col < self.width and (row, col) != cell:
+                    surrounding_cells.append((row, col))
+
+        # internalize new klowledge
+        self.knowledge.append(Sentence(surrounding_cells, count))
+
+        for sentence in self.knowledge:
+            #  4) mark any additional cells as safe or as mines
+            new_safes = sentence.known_safes()
+            new_mines = sentence.known_mines()
+
+            if new_safes:
+                self.safes.update(new_safes)
+                self.knowledge.remove(sentence)
+
+            if new_mines:
+                self.knowledge.remove(sentence)
+                for mine in new_mines.union(self.mines):
+                    self.mark_mine(mine)
 
     def make_safe_move(self):
         """
