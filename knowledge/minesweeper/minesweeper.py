@@ -208,8 +208,8 @@ class MinesweeperAI():
         # internalize new klowledge
         self.knowledge.append(Sentence(surrounding_cells, count))
 
+        #  4) mark any additional cells as safe or as mines
         for sentence in self.knowledge:
-            #  4) mark any additional cells as safe or as mines
             new_safes = sentence.known_safes()
             new_mines = sentence.known_mines()
 
@@ -222,6 +222,22 @@ class MinesweeperAI():
                 for mine in new_mines.union(self.mines):
                     self.mark_mine(mine)
 
+        # 5) inferr new knowledge by subtracting sets
+        knowledge = self.knowledge.copy()
+        while knowledge:
+            sentence_1 = knowledge.pop()
+            set_1 = sentence_1.cells
+            count_1 = sentence_1.count
+
+            for sentence_2 in knowledge:
+                set_2 = sentence_2.cells
+                count_2 = sentence_2.count
+
+                if set_1.issubset(set_2):
+                    s = Sentence(set_2 - set_1, count_2 - count_1)
+                    if s not in self.knowledge:
+                        self.knowledge.append(s)
+
     def make_safe_move(self):
         """
         Returns a safe cell to choose on the Minesweeper board.
@@ -231,7 +247,11 @@ class MinesweeperAI():
         This function may use the knowledge in self.mines, self.safes
         and self.moves_made, but should not modify any of those values.
         """
-        raise NotImplementedError
+        if len(self.safes) > 0:
+            print(self.safes)
+            return self.safes.pop()
+        else:
+            return None
 
     def make_random_move(self):
         """
@@ -240,4 +260,3 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        raise NotImplementedError
