@@ -1,0 +1,555 @@
+- CS50’s Introduction to Artificial Intelligence with Python
+    - 0. Search
+        - Abstraction
+            - actions
+            - agent
+            - transition model
+                - description of targeted output
+                - Formal definition
+                    - Results(s,a)
+                - state space
+                    - space of all possible actions
+        - Algorithm
+            - Node
+                - data structure
+                - keeps track of
+                    - a state
+                    - a parent
+                    - an action
+                        - action applied to parent to get to this node
+                    - Path cost
+                        - from initial to node
+                        - cost of path
+                    - a path cost
+            - Frontier Approach
+                - all that could be explored next
+                - if frontier empty = no solution
+                - iteratively remove node from frontier
+                    - add to explored set
+                - if node = goal return solution
+                - expand node
+                    - add resulting to frontier
+        - uninformed search
+            - Depth first Search
+                - uses stack as data structure
+            - Breath first Search
+                - uses queue as data structure
+        - informed search
+            - uses problem-specific knowledge
+            - greedy best-first search
+                - heuristic function$$ h(n) $$
+                    - used to expand note that is closest to goal
+                - Manhattan distance
+                    - ![](https://remnote-user-data.s3.amazonaws.com/V7VXKhKFmx5fAU2w6J5gV1qpNp49ZT8CMR9d6XYAQ0EIle92sBZmm__bZ3ETZ-VTewR9TYbAB7ipDWoz06b6d546syaVxTcWITWyJ_r0iW5guptezSh0AmDUlBHTyd7-)  ![](https://remnote-user-data.s3.amazonaws.com/3HPdAWyvgrc5ZUHtvQ1wg3lTXlmtLkC1NXsyL_6bYnOIHBYVaYyF2IEtOte0AxjhQuC10TZweSQQkQtocCItOAC7eifXcfnw2i9MqyD2b6ew5SXJ950x2otoxaybAFd1)  
+                - expands note that is closest to goal by 
+            - A* search
+                - expands node with lowest $$ g(n) + h(n)$$
+                    - g(n) = cost to reach node$$$$
+                        - number of previous explored states
+                    - [heuristic function h(n) ](heuristic-function-h(n)-.md) = estimated cost to goal$$$$  
+        - $$ $$Adversarial Search
+            - Minimax
+                - assign utility to possible outcomes
+                - example TickTackTo
+                    - Min(O) = aims to maximizing score
+                    - Max(X) =aims to minimizing score
+                - parts
+                    - initial state $$ S_0 $$
+                    - players(n)
+                        - whose turn 
+                    - action(s)
+                        - outputs possible actions  
+                    - results(s,a)
+                        - output after move
+                    - terminal(s)
+                    - utility(s)
+                - steps
+                    - MAX pics action with highest value of MIN's-Choice(Result(s,a)
+                    - MIN pics action with smallest value of Max's-Choice(Result(s,a)
+                - pseudo code
+                    - ![](https://remnote-user-data.s3.amazonaws.com/k2Fve1mcS5fig_GtLs2_SAUb2m3wfcJNlQup98-DhEkP6BS8zrXZQ2rQcEEw_nKpIbcTcuFdwb_ua-1bQC-1EvECDS6T3gkatg8HvcpYXceN8pjczhEXFw-MgQLTyPY1)  
+                    - ![](https://remnote-user-data.s3.amazonaws.com/kjK2qPkcX95rY0dV56-g2a__jyLK1i7B4fz8fK5zHc2xJUn4jFKb-a6pPk5DO-ln_RnCAKisKoPv5cBj4cc5g12zGvSGI_KLyD74cGjw-F1musOWjWbDhJIQt7czxZ6V)  
+                - Alph-Beta Pruning
+                    - discarding possibilities that lead to predicted less good outcome 
+                - Depth-Limited Minimax
+                    - evaluation function
+                        - estimates expected utility of the game
+                        - 
+        - Projects
+            - Tick-Tack-Toe
+                - player
+                - actions
+                - results
+                - winner
+                - terminal
+                - utility
+                - Alpha-Beta Pruning
+        - 
+    - 2. Knowledge
+        --------------------- Portal ---------------------
+            - Computer Science #Pinned
+                - Artificial Intelligence
+                    - [Guild] Artificial Intelligence e.g. ai-basics (Fall 2020)
+                        - 8. Reasoning
+                            - How to represent knowledge
+                            - First order Predicate Logic
+                            - Sources of inferences
+                            - Application of Planning Methods
+                            - Algorithms
+        - Knowledge-based agents
+            - make decisions by:: considering their knowledge base, and making inferences based on that knowledge
+        - Propositional Logic
+            - Propositional Symbols
+            - Logical Connectives
+                - additional symbols
+                - not 
+                - and 
+                - or 
+                - implication
+                    - y is conclusion
+                    - if x is false y is always true
+                - biconditional
+                    - "if and only if" 
+            - Model
+                - to know what is true in the world
+                - assigns truth value to propositional symbols
+            - Knowledge-abes
+                - that we know to be true
+                - for drawing conculsions
+            - Entailment ⊨
+                - if a is true b is always true
+                - using model
+                - deduced from a
+                - ai produced entailment
+            - Infrence
+                - ai produces new knowledg
+                - answers entailment
+        - Model Checking
+            - possible world
+            - enumerates models
+                - if in every model knowledge base holds true, a is true
+                    - KB  __entails__  a
+            - ![](https://remnote-user-data.s3.amazonaws.com/gD0J5UhAzh0z6Wk_Y1reLclxFhlAOx0DD27_68NkpRWP0CcZTS1eSR1pWji-KS3GmN6UIPEGNIl5L8XQDstNQLxGljRqYuDrg7g3Pp7tV5dORDbjno6fBnXXLOw7HFey)  
+            - less intractable with a lot of variables
+        - Algorithmic Model chceking
+            - ![](https://remnote-user-data.s3.amazonaws.com/2XUUT7m8y47RbKWTgsZxIPNCD4FQeoKENjyan4fOSz28Im9Rb8iWGO-2OwMEiziY4ZFxZbUVMEGH7AViEIwSyjk2dIQ4SXF5h5F8p_lV5JVvSamOb0Hm0lYnYeTzTTJE)  
+            - ```(( ¬ rain) => hagrid) ∧ (hagrid v dumbledore) ∧ (—(hagrid A dumbled ore)) ∧ dumbledore```
+        - Knowledg engineering
+            - representing problem and knowledge in computer respresentation
+            - examples
+                - Clue
+                - Logic Puzzle
+        - Inference Rule
+            - Modus Ponens
+            - And Elimination
+                - a and b then a is true
+            - Double Negatoin Elimination
+            - Implication Elimination
+                - deduction from negation
+            - Biconditional Elimination
+            - De Morgan's Law
+                - [Distributive laws (Distributivgesetze)](Distributive-laws-(Distributivgesetze).md)  
+        - Search Problem
+            - Initial state
+                - starting knowledge base
+            - Actions
+                - inference rules
+            - Transition model 
+                - new knowledge base after inference
+            - Goal test
+                - checking whether the statement that we are trying to prove is in the KB
+            - Path cost function
+                - the number of steps in the proof
+        - Resolution
+            - Unit resolution rule
+                - if a or b and not b then a
+                - complementary conflicting statements
+                - generalization
+                    - 
+                - clasue
+                    - a disjunction of literals
+                    - chaining of and or "or" literals
+                - conjunctive normal form
+                    - connection of [clasue](clasue.md)s
+                - conversion to CNF
+                    - eliminate
+                        - biconditionals
+                        - implications
+                    - move
+                        - inversion inward with de morgan
+                    - distribute ors
+        - Inference by Resolution
+            - 
+    - 3. Uncertainty
+    - 3. Optimization
+        - Abstraction
+            - State Space Landscape
+            - Neighbours
+            - Global Minimum
+                - cost function
+            - Global Maximum
+                - objective function 
+                    - objective evaluation of state particular
+        - Local Search
+            - looks at neighbouring states of single node
+        - Hill Climbing
+            - Psudo Code
+                - ```function Hill-Climb(problem):
+	current = initial state of problem
+	repeat:
+		neighbor = best valued neighbor of current
+		if neighbor not better than current:
+			return current
+		current = neighbor```
+                - 
+            - looking for better neighbour till no better neighbour
+            - disadvantages
+                - overcoming local minimum or maximum
+                - solution is [Simulated Annealing](Simulated-Annealing.md)  
+            - Shoulder
+                - [Local Search](Local-Search.md) can get stuck
+                - ![](https://remnote-user-data.s3.amazonaws.com/7z9UiVVU34so3rQecYbQfFxk49fwekAhkqzk-dM9IDi2jHRfqmMpY5YAgiE6z4aIp-cyIBLBOFuxTnlD2USq_M--oSVzy_uuXUeFLSKHfD6mIGCazuVIUt31oqQ_0BU_)  
+            - Variants
+                - steepest -acent/-descent #Tbu
+                    - chooses highest or lowest of neighbors
+                    - ![](https://remnote-user-data.s3.amazonaws.com/fnyKWpZi6B7GsgQiUZogMVmW1z2NfGPw2_8yoNX_41_Bwh5Vz4cTWCNjWjUftbvQeBam_ZXstXE3Tk2bZKxamS86DmWRVnkiQi9qb3U8TOEJg6kEmo94BurWoQXxGyhF)  
+                    - chooses highest or lowes of neighbours
+                    - [Message](Message.md):: Tbu #Message
+                - stochastic:: choosing randomly from high value neighbors
+                    - choosing randomly from high value neighbours
+                - first-choice:: selects first neighbor with higher value
+                    - selects first neighbour with higher value
+                - random-restart:: conduct [Hill Climbing](Hill-Climbing.md) multiple times
+                    - conduct [Hill Climbing](Hill-Climbing.md) multiple times
+                - local beam search:: starting with multiple states to select **k** nearest neighbour
+                    - starting with multiple states to select highest neighbours
+        - Simulated Annealing
+            - pseudo code
+                - ```function Simulated-Annealing(problem, max):
+
+	current = initial state of problem
+	for t = 1 to max:
+		T = Temperature(t)
+		neighbor = random neighbor of current
+		ΔE = how much better neighbor is than current
+		if ΔE > 0:
+		current = neighbor
+		with probability e^(ΔE/T) set current = neighbor
+	return current```
+                - traveling salesman problem
+                    - np complete
+                    - neighbour
+                        - switching edges
+                            - ![](https://remnote-user-data.s3.amazonaws.com/CyMQiYpNNQbn3jMNBuSXKLfK6Y_IGUem-sBYBV7Qqa59CGX5J6m2e1W303vbFoNJJewENp3NtjVY6BLLkmX6n2Bai6c99E3uv3UDKCHRk8X5P6szCf_PzupYCPecehU3)  ![](https://remnote-user-data.s3.amazonaws.com/n51iFSuOs64GxLjaRe1HmwL3k1vAN2DuysEBSWqAurNJbvt-_84eC3Wy8sLLa4RLPlQ0CMuwanW4eIfK3rUthrPBc6ijbxOTllC8YRhglnmzV2gRSSDqqOe7DNb7LccY)  
+        - Constraint Satisfaction
+            - General
+                - csp = constraint satisfaction problem
+                - ex. Students cant write exam for different classes at same time
+                    - ![](https://remnote-user-data.s3.amazonaws.com/0cZH6trCXU7B2b4e8QA3UaW3XZ5zNOVDcWqWxg3hDtQLGao7pUnPoDKXN2XEY830MZxkSJ6cTlCKROwbaZ5ruWyHScvCdgEvOqWV7vAThcOBNDTBAQKhN5DsDGIVs3AI)  ![](https://remnote-user-data.s3.amazonaws.com/fg-zBgTOhKyR7hpWsFPJ-0yKCorxQcRzjDy7kKXPEKpX-O3viPrvIYpxeItPwAKjjg9TxkDD4gu9nqSST4rXmD-7WXR6xsNevVVpD_a0iI9blPwAp5ei9zvbdCHDPyl5)
+                - Constraint Types
+                    - Hard contraint
+                    - Soft contraint
+                    - Unary contraint:: involves **one** variables
+                        - involves **one** variables
+                    - Binary contraint:: involves **two** or more variables
+                        - involves **two** or more variables
+                - Consistencies
+                    - we apply consistency to graph to 
+                    - node Consistency
+                        - visual
+
+![](https://remnote-user-data.s3.amazonaws.com/L9LfxxfMkAGKfzolQCmd8LpHh3UiMCWLooCp40meomdXB9FAh2lMunPcjxAT9pjiSjHliG698vB6hTiOCnJINcoj3VuqgenLLbndPj_kQJZ0A0-CujHwoxnG6zwIfPhQ)
+
+ ![](https://remnote-user-data.s3.amazonaws.com/pI3xwKs_7ciSqwiUfc_5fyhscU_onqWA2YrXYAtuxrUsXxsXcIBOy49CsAjfxzSDjw9JMSKdrKdV1GIxYZ_iSkBVCrW0krb7u95P0EYxr1FA9v0E6M8tYPVI3zanMoFF) 
+                        - all variables satisfy the [Unary contraint](Unary-contraint.md)s
+                    - arc Consistency
+                        - visual
+![](https://remnote-user-data.s3.amazonaws.com/8bkZn4qZ-O6VokoKrIcM7Tnmcu4y8aKmddg2ELXhthRh5y4Uk1XwzJReIig-f5kC_C8V7VMZu3CS2wyeQaF3kvshAp9QtD0WPsEgl832hKVmGO-m1T5yJVKwpaZDCm5Z)
+
+![](https://remnote-user-data.s3.amazonaws.com/qHphFJv31X-12DwTLoijf4eFBh_4QiaFsbLjn6e3QOYGfbKl0805uvvAVD5LZSaHtOjVb_Ns2YrDX4UmsZA8ShIVUnG7MPBk9i2Id2TVT-JewmezhlWiRFGLRigdXqr7) 
+                        - from arc (d. Pfleil)
+                        - for each variable in the [domain (Definitionsbereich)](domain-(Definitionsbereich).md) there is a corresponding element in[range (Wertebebereich)](range-(Wertebebereich).md) (e.g [surjective](surjective.md))
+                        - Algorithms
+                            - AC-3(csp)
+                                - enforcing [arc Consistency](arc-Consistency.md) on a whole graph  
+                                - ![](https://remnote-user-data.s3.amazonaws.com/K-8DZWuOovigKfJ_ZKDLTtCM4QdY5P6ADAbhSEEpztllShXY76pNQJjvnhNWyH_dGFfm4KCEpQ3aNRKbHaC9s_eI704nkRwxj8UHoJ_LMPRs1LSODFiTUfeRY0yVzkEC)  
+                                - uses a queue to remember to check nodes that could not have [arc Consistency](arc-Consistency.md) after deleting removing nodes
+                            - Backtracking search
+                                - we try to assign a value
+                                - we remember nodes that do not fulfill constraints
+                                - if stuck we backtrack and try something else instead
+                                - sudo code
+                                    - ```function Backtrack(assignment, csp):
+	if assignment complete:
+		return assignment
+	var = Select-Unassigned-Var(assignment, csp)
+	for value in Domain-Values(var, assignment, csp):
+	if value consistent with assignment:
+		add {var = value} to assignment
+		result = Backtrack(assignment, csp)
+		if result ≠ failure:
+			return result
+		remove {var = value} from assignment
+	return failure```
+                                    - ![](https://remnote-user-data.s3.amazonaws.com/FMBbOTqQvgXqGAj0YmVG-vdq2z71LS_GEGg8BTqjdptRihNfLEg74TUkC2UQyPNV9GDIaYT27O2WbdCdXUIbjriFw0HP7Cq7dXC9UDCyi42SWdTBAgCIzWYKU5HxpHwu)
+                        - Heuristics
+                            - Minimum Remaining Values (MRV)
+                                - choosing variable with lowest number of remaining values in its domain
+                                - how many values are still valid for this variable
+                                - ![](https://remnote-user-data.s3.amazonaws.com/QeIen_QaFO2z7qjKuGLEzamOw07jAZP0savI67E_gmhIKhmlVADiTBwrUwcLL8y23VAg-wQB3WabKyYtPPXEh9OR0UiMqntlit2pC3365a13jqKgu_Z1z-e0KHEb4st5)  
+                            - Degree Heuristic
+                                - offensive
+                                - choosing node e.g.  variable with most remaining unsatisfied constrains fist
+                                - rule out most of the search space fist
+                                - ![](https://remnote-user-data.s3.amazonaws.com/_-JrzsSXpCAl29hTNh0KQQqVq1owTw7ombJomUPmGLug7PVlHE79BTLS9i7Q43gG41Rq2GEBrKATJkM6xf8xt1rJ7AW8uR9baTxeTRumged1uYrCSg4qUJXrfffDpi3v)  
+                            - Least Constraining Values Heuristic
+                                - defensive
+                                - select variable that constrains the lowest amount of other variables fist
+                                - to prescribe it its constrains at very end
+                                - ![](https://remnote-user-data.s3.amazonaws.com/nrwEGCMBn63MoIP-hBWubpOqo1RQqh3TBK131KqmeHZmlqQ-SQbq3Htx2u2wMLrI-AiSqbiYEu_tQmJXYEQFOVrhPVRbf7Du1wL0Fu3t3ZqVxSqgGANSz5Fw-zeNuph4)  
+            - Linear Programming
+                - Properties
+                    - continuous values
+                    - <, > or = contrains
+                - minimize cost function inputs
+                    - num of variables
+                    - constrains
+                        - ex. <=  b
+                    - bounds
+                        - ex. 1<= x <= 2
+                - Algorithm
+                    - Simplex
+                    - Interior-Point
+    - 4. Learning
+        - Activation Function
+            - function
+                - ex: predict rain$$ f(humidity, pressure) $$  
+            - hypotheses-function (goal)
+                - linear combination
+                    - weight of variables
+                - inputs
+                    - Weight Vector w: (w0, w1, w2)
+                    - Input Vector x: (1, x1, x2)
+                - function
+                    - $$ h\left(x_{1}, x_{2}\right)=\begin{array}{l}
+\text { 1 if } w_{0}+w_{1} x_{1}+w_{2} x_{2} \geq 0 \\
+\text { 0 otherwise}
+\end{array} $$
+                    - $$ h\left(x_{1}, x_{2}\right)=\begin{array}{l}  w_{0}+w_{1} x_{1}+w_{2} x_{2} \geq 0  \space ? \\ \text { 1 : 0} \end{array} $$     
+                - parameterized dot product
+                    - dot product
+                        - $$ \mathbf{w} \cdot \mathbf{x}: w_{0}+w_{1} x_{1}+w_{2} x_{2} $$
+                    - parameterized by the weights$$ w $$
+                        - $$ h_{\mathrm{w}}(\mathbf{x})=\begin{array}{l}
+1 \text { if } \mathbf{w} \cdot \mathbf{x} \geq 0 \\
+0 \text { otherwise }
+\end{array} $$
+                - ex: predict rain $$ h(humidity, pressure) $$ $$$$
+                    - Input Vector x: (Rain, x1, x2)
+                    - $$ h\left(x_{1}, x_{2}\right)=\begin{array}{l}
+\text { Rain if } w_{0}+w_{1} x_{1}+w_{2} x_{2} \geq 0 \\
+\text { No Rain otherwise }
+\end{array} $$
+            - perceptron learning rule - bias modification
+                - changing weight based on data point $$(x,y)$$$$$$  
+                - $$\alpha$$ how strong updates 
+                - $$ w_{\mathrm{i}}=w_{\mathrm{i}}+\alpha(\text { actual value - estimate }) \times x_{\mathrm{i}} $$
+                    - estimate = what we thought the input was
+                    - if actual val = estimate = 0; weight does not change 
+                - $$ w_{\mathrm{i}}=w_{\mathrm{i}}+\alpha\left(\mathrm{y}-h_{\mathrm{w}}(\mathbf{x})\right) \times x_{\mathrm{i}} $$
+            - threshold types
+                - hard threshold
+                    --------------------- Portal ---------------------
+                        - Math
+                            - Pure Mathematics
+                                - Changes
+                                    - Function Analysis
+                                        - step function
+                                            - visual![](https://remnote-user-data.s3.amazonaws.com/2-ezZrn9zgeDqe_gA_J4HIqJmtrwF6duM8vsNRb7uw0TPMVycCfRnyZxj-M58HrPAsrWSZdixLfe_IQEwQwDdosVlbzq31hRY2hjrrh0HY1lZgwwGlbsbu4IGeNz8BDI)
+                                        - rectified linear unit (ReLU)
+                                            - visual ![](https://remnote-user-data.s3.amazonaws.com/0q7TeyZJpuHcjs-4vNiFfPYg2neSkyi7ue8Fs7P1Z_339OSGL927v0Lvfkwgwz0P5Gx73DIFCRhy4HaJJD98Q9hAsoi7e5esPj20IYYooLY6x9E4h2PPEnF1v3bhkoPt)  
+                    - binary output
+                - soft threshold
+                    --------------------- Portal ---------------------
+                        - Math
+                            - Pure Mathematics
+                                - Changes
+                                    - Function Analysis
+                                        - logistical function** **
+                                            - visual![](https://remnote-user-data.s3.amazonaws.com/CepiWAGoNXwAjt_NCW_UbN1hXwWw3qZkKacSP81MBHSO9yIczMaofIbpeU_sPDIyb8bQW1iwjRJDy-d2twSXveTiZgcnuA8g3lWGYVi0GWaShSNwXGlhtwwWDPhZn60t)  
+                    - continuous output
+                    - logistical function** **
+            - goal 
+        - Dimensions
+            - computer has no difficulty imagining n dimensions
+            - it's just a number to keep track of 
+        - 
+        - classification
+            - Nearest-neighbor
+                - K-nearest-reighbor
+                    - visualization of superiority situtation ![](https://remnote-user-data.s3.amazonaws.com/_oVH1ndLfJSaNq0EV8LRR103wILE6tQjWMoiReWpkbYpi_oob-aHjjz0Q7_jBRLL9Rp9gaPiqXSGsDF-3nuAS6sIv4RECwlQlrx9JB9vGkqS6JtdhPKmr18aSymNeBFa)  
+            - Support Vector Machine
+                - possible lines we can draw
+                - works in higher dimensions
+        - Regression
+            - Evaluating Hypotheses
+                - loss function
+                    - loss of utility
+                    - negative performance of our hypothesis
+                    - 0-1 loss function$$$$
+                        - ```L(actual, predicted):
+	0 if actual = predicted
+	1 otherwise```
+                    - L1 loss function
+                        - ![](https://remnote-user-data.s3.amazonaws.com/AR0Y09pg4dzF9G6FY4qE7G2eDj8Nul_jvpD2hJZFOgVCI4ty4svadD6d5C6JhH69qbT4KvbdW4xCLvl7HEUFYjkuJns4eb_9pYSRpcRj0r8tV9lfWt1gJtUU2oAvO80Y)  
+                        - ```L(actual, predicted) = | actual - predicted |```
+                    - l2 loss function
+                        - harder penalization of prediction error
+                        - ```L(actual, predicted) = (actual - predicted)^2```
+        - 
+        - Statistical Techniques
+            - Regularization
+                - $$ \operatorname{cost}(\mathrm{h})=\operatorname{loss}(\mathrm{h})+\lambda \text {complexity}(\mathrm{h}) $$  
+                - lambda = complexity penalization
+            - holdout cross-validation
+                - splitting data to test model on data from testing set
+                - k-fold cross validation
+        - 
+        - Supervised Learning
+            - provide input and output pairs
+            - returns function that maps input to outputs
+        - 
+        - Reinforement Learning
+            - Markov Decision Process
+                - action of possible state
+                - R = associate reward with states
+                - Transition Model:: probability of ending up in next state
+                    - Elements
+                        - Set of states $$S$$
+                        - Set of actions $$Actions(S)$$
+                        - Mathematical notation
+                            -  $$P(s’ | s, a)$$
+                            - $$s$$ = state, $$s'$$ = next state, $$a$$ = action
+                            - Reward function = $$R(s, a, s’)$$  
+                    - probability of ending up in next state
+            - Q-Learning
+                - formular
+                    - assume Q(s,a) = 0 at start
+                    - on every action $$Q(s, a) \leftarrow \mathrm{Q}(s, a)+\alpha(\text { new value estimate }-\text { old value estimate }) $$
+                    - $$ $$$$\alpha$$$$ $$ = how much do we value new vs old information
+            - Applications
+                - Game playing agents
+            - function approximation
+                - estimates Q(s,a) rather than computing all
+                - by comparisons of features of states
+                - [Message](Message.md):: [Add Mnemonic](Add-Mnemonic.md) #Message
+        - Unsupervised learning
+            - Clustering
+                - k-means clustering
+                    - reassining of centers
+                    - related to part of  "the master algorithm" ?   #Tbc
+            - 
+    - 5. Neural Networks
+        - Neural Networks
+            - ANN
+                - model mathematical function
+                    - based on structure of network
+                - Unit
+                    - 
+        - Activation Functions
+            --------------------- Portal ---------------------
+                - Computer Science #Pinned
+                    - Artificial Intelligence
+ -- Avoided infinite recursion --             - $$ h\left(x_{1}, x_{2}\right)=g\left(w_{0}+w_{1} x_{1}+w_{2} x_{2}\right) $$
+                - w0 = bias
+                - g =  [Activation Functions](Activation-Functions.md)  
+                - g gets applied to [parameterized dot product](parameterized-dot-product.md)  
+            - [step function](step-function.md)  
+            - [logistical function ](logistical-function-.md)
+            - [rectified linear unit (ReLU)](rectified-linear-unit-(ReLU).md)
+        - Neural Network Structure
+            - ![](https://remnote-user-data.s3.amazonaws.com/89cmv2FX2wZNtTSPb-v2ZnJPrIj-_KflD64zsUZcAgTAjd6hGyjToqkgIs5eB4q7ofgD-VaNlryZyN2yMSjbzobhYSXID4_3dtLhMEY9aEp0Yb6KcTQz4DsbDVEkjAV9)  
+            - what should the activation function be to get the result that we expect
+            - model And-function
+            - model Or-function
+            - multi input model
+                - ![](https://remnote-user-data.s3.amazonaws.com/b-UEMTGGNDs0TRTCWVuRmy89tIx3oktcJytscyRNp2LUIgIoTVLROdf3gQ2YA5WVwIgMwg_UyrPxncBUN-BtPR_fECr1k-SXsnBoXdpVfYRbxzFottiNSwAcT_w9vThQ)  
+            - Gradient descent
+                - algorithm to minimizing loss
+                - calculate gradient based on **all** data points
+                - update weights into direction that decreases gradient
+                - Stochastic Gradient Decent:: calculate gradient based on **one** data points
+                - Mini-Batch Gradient Decent:: calculate gradient based on **small batch of** data points
+            - Multiple Output Model
+                - multi class classification
+                - we add weights 
+                - multiple types of weather
+                - ![](https://remnote-user-data.s3.amazonaws.com/e0dm0mkX8bh8o6ooVn6eEhUvNK7UODwgqnm8P56VFoPTtuZstGV-0q3pOZBNekJWFRXSt1y-U7o-cUYPnb8da2R_CpDbskdnfXyn2oaq4Q73U2_QIPbg14j0V7Z_LcD4)  
+            - Perceptron
+                - Limitation:: only capable of learning linearly separable decision boundary
+            - Multi-layer Neural Network
+                - hidden layer:: allows each layer to compute its own function that are combined to more complex functions
+                    - ![](https://remnote-user-data.s3.amazonaws.com/8JV4tXpmK_hKLEJWm1kYxYgHkz5Nj7yqP5ysjkf3O7DzBzgT6cuIb-uPcNLYn9zUOBkEcz_8z2fvu6H7gQw7rtsuePKXfRzG44MHcCn4dhNGpgC70xEDBXA4A_Z-0Tyw)
+                - counteract overfitting
+                    - dropout
+                        - temporarily drop out nodes out of network for training runs
+                        - create more robust network
+                        - ![](https://remnote-user-data.s3.amazonaws.com/vBkaQY1XVi4rmAFQAfonTgloRTLeKY96OendZ8fNXqybxhMUI1FOEq90ur5qBuv9gXFl6TXx_LIEPGBfhdjyQ7WtlBTTQH2zJ3tcEX6MXr2Capxc4J9xa79HwB4R4ncX)
+                - [Recurrent Neural Network](Recurrent-Neural-Network.md)
+                    - standard is only forward
+                    - powerful when we are dealing with sequences
+                        - natural languages
+                        - video 
+                            - sequence of images
+                    - saving information for future runs
+                    - feeding backward
+                        - feed model or output of model in new model iteration
+                    - types 
+                        - Long short term memory Network (LSTN)
+                - 
+        - Computer Vision
+            - image convolution
+                - extractionof features from image
+                - add pixel value to neighbours
+                - Kernel Matrix
+                    - ![](https://remnote-user-data.s3.amazonaws.com/uWoSzDK2-uHy6KGungtZPW9y-r50qaDfwMenE54ZVCR2ZU3JiBi9TjcgYzPN8P46xYaenE2oqhLo2gUkMefsgGNFuHgbchHNOu_3MFq7FxL1GiJy0fZlLCKzaRGbBL0S)  
+                    - feature map
+                        - filtered version
+                    - ![](https://remnote-user-data.s3.amazonaws.com/zUnnjnTgJwkXpD0pPhTIRP0FzYQhtlksFoj_coVsXcQhzNAa9J1eCM6n5evSn88_4ABw07OUKpXsKJLAEpSJtILmfEOet9mnak68OFksvu4zOopMJaCp1oTIE-w1KbTf)  
+                    - output higher middle number if neighboring pixels are different
+                    - can be applied to detect edges
+                - Pooling
+                    - Max Pooling
+                        - creates smaller representation 
+                        - reducing demensions
+                        - sampling from particular regions
+                        - ![](https://remnote-user-data.s3.amazonaws.com/Y93CVIRYD-d21ra2o_uxaT6Ed9C_MeRFQneo9LtDkm-Bq4U89sN1o19H_fbJM_xONniMnHuiJku15rhZBelmOs_aLPqWvhv3chmewGiHfje-YTcehI1r7Dv85riurHF9)  
+                    - Average Pooling
+            - CNNs
+                - we can train neural network on choosing [Kernel Matrix](Kernel-Matrix.md) and [Max Pooling](Max-Pooling.md) matrix  
+                - 
+        - Homework/Project 5
+            - data set
+                - labeled data set
+                - German Traffic Sign Recognition Benchmark (GTSRB)
+                - 43 kinds of signs
+            - subdirectory
+                - gtsrb in 43 subdirectories
+                - 0 to 42 for each category
+            - traffic.py
+                - main
+                    - accepts command line argument 
+                        - to data-directory 
+                        - ?target file for saved model
+                - load_data
+                    - load form dir
+                    - split into test and training
+                - get_model
+                    - creates model and fits on data
+                    - evals on testing data
+                    - if name provided saved to disk
+    - 6. Language
+    - 
+    - 
+    - 
+    - 
