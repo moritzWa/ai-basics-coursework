@@ -58,7 +58,26 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-    raise NotImplementedError
+
+    img_arr = []
+    lbl_arr = []
+
+    # loop through 43 dirs
+    for foldername in os.listdir(data_dir):
+
+        for filename in os.listdir(os.path.join(data_dir, foldername)):
+            # img into np array
+            img = cv2.imread(os.path.join(data_dir, foldername, filename), 1)
+
+            # normalize img size
+            normed_img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+            # print(normed_img.shape)
+
+            img_arr.append(normed_img)
+
+            lbl_arr.append(int(foldername))
+
+    return (img_arr, lbl_arr)
 
 
 def get_model():
@@ -67,7 +86,10 @@ def get_model():
     `input_shape` of the first layer is `(IMG_WIDTH, IMG_HEIGHT, 3)`.
     The output layer should have `NUM_CATEGORIES` units, one for each category.
     """
-    raise NotImplementedError
+
+    # input shape (IMG_WIDTH, IMG_HEIGHT, pixil_types=3)
+
+    # output layer units=NUM_CATEGORIES
 
 
 if __name__ == "__main__":
