@@ -263,14 +263,13 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        possible_moves = []
-        for i in range(self.height):
-            for j in range(self.width):
-                move = (i, j)
+        available_moves = []
+        for row in range(self.height):
+            for col in range(self.width):
+                move = (row, col)
                 if move not in self.moves_made and move not in self.mines:
-                    possible_moves.append(move)
-        # Make random choice, or return none if no safe moves
-        if possible_moves:
-            return random.choice(possible_moves)
+                    available_moves.append(move)
+        if available_moves:
+            return random.choice(available_moves)
         else:
             return None
