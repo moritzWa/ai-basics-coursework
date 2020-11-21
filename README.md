@@ -2,7 +2,7 @@
 
 ## Notes
 
-I published my notes for the [Guild] Artificial Intelligence (Fall 2020) lecture and the [CS50’s
+I published my notes for the [Guild] Artificial Intelligence (Fall 2020) lectures and the [CS50’s
 Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai/2020/) course.
 
 - [AI Guild](https://www.remnote.io/a/cs50-s-introduction-to-artificial-intelligence-with-python/5fb8ec6ef80fff004588903a)
@@ -10,6 +10,7 @@ Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai
 
 ## Projects
 My projects focus on planning because its techniques will be applied in my current CODE project study journey. 
+I focused less on reasoning because because there isn't much application of its techniques in our project.
 
 ### Planning
 - Maze
