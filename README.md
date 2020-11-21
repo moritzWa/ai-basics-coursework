@@ -2,8 +2,8 @@
 
 ## Notes
 
-I published my notes for the [Guild] Artificial Intelligence (Fall 2020) and the [CS50’s
-Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai/2020/) on RemNote.io.
+I published my notes for the [Guild] Artificial Intelligence (Fall 2020) lecture and the [CS50’s
+Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai/2020/) course.
 
 - [AI Guild](https://www.remnote.io/a/cs50-s-introduction-to-artificial-intelligence-with-python/5fb8ec6ef80fff004588903a)
 - [CS50 AI](https://www.remnote.io/a/-guild-artificial-intelligence-e-g-ai-basics-fall-2020-/5fb8ecbdf80fff004588924d)
