@@ -6,6 +6,7 @@ import tensorflow as tf
 
 from sklearn.model_selection import train_test_split
 
+
 EPOCHS = 10
 IMG_WIDTH = 30
 IMG_HEIGHT = 30
@@ -41,7 +42,7 @@ def main():
     if len(sys.argv) == 3:
         filename = sys.argv[2]
         model.save(filename)
-        print(f"Model saved to {filename}.")
+        print("Model saved to {}.".format(filename))
 
 
 def load_data(data_dir):
@@ -89,7 +90,39 @@ def get_model():
 
     # input shape (IMG_WIDTH, IMG_HEIGHT, pixil_types=3)
 
-    # output layer units=NUM_CATEGORIES
+    model = tf.keras.models.Sequential([
+        # input
+        tf.keras.layers.Conv2D(
+            32, (3, 3), activation="relu", input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)
+        ),
+        # max pooling with 2x2
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+
+        tf.keras.layers.Conv2D(
+            64, (3, 3), activation="relu"
+        ),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+
+        # flatten units
+        tf.keras.layers.Flatten(),
+
+        # hidden layer with dropout
+        tf.keras.layers.Dense(128, activation="relu"),
+        tf.keras.layers.Dense(64, activation="relu"),
+        tf.keras.layers.Dropout(0.33),
+
+        # output
+        tf.keras.layers.Dense(NUM_CATEGORIES, activation="softmax")
+    ])
+
+    # training model
+    model.compile(
+        optimizer="adam",
+        loss="categorical_crossentropy",
+        metrics=["accuracy"]  # log training/verification discrepancy
+    )
+
+    return model
 
 
 if __name__ == "__main__":
