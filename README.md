@@ -9,7 +9,7 @@ Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai
 - [CS50 AI](https://www.remnote.io/a/-guild-artificial-intelligence-e-g-ai-basics-fall-2020-/5fb8ecbdf80fff004588924d)
 
 ## Projects
-My projects focus on planning because its techniques will be applied in my current CODE project study journey. 
+My projects focus on planning because its techniques will be applied in my current CODE project [Study Journey](https://studyjourney.netlify.app/). 
 I focused less on reasoning because there isn't much application of its techniques in our project.
 
 ### Planning
@@ -17,7 +17,7 @@ I focused less on reasoning because there isn't much application of its techniqu
   - Inside the Planning/maze directory run ```python maze.py maze[1-5].txt [DFS | BFS | HS]```   
 
 - TicTacToe
-  - Inside the Neural_Networks/tictactoe directory run ```python runner.py``` to play against the ai.
+  - Inside the Planning/tictactoe directory run ```python runner.py``` to play against the ai.
 
 ### Optimization
 - Crossword
@@ -27,8 +27,7 @@ I focused less on reasoning because there isn't much application of its techniqu
 
 ### Reasoning
 - Minesweeper
-  - Inside the minesweeper directory, run ```python runner.py```
-
+  - Inside the Reasoning/minesweeper directory, run ```python runner.py```
 
 
 ### Neural Networks
@@ -36,6 +35,6 @@ I focused less on reasoning because there isn't much application of its techniqu
   - Download the distribution code from https://cdn.cs50.net/ai/2020/x/projects/5/traffic.zip and unzip it.
   - Download the [data set](https://cdn.cs50.net/ai/2020/x/projects/5/gtsrb.zip) for this project and unzip it. Move the resulting gtsrb directory inside of your traffic directory.
   Inside the traffic directory, run ```pip3 install -r requirements.txt``` to install this project’s dependencies: opencv-python for image processing, scikit-learn for ML-related functions, and tensorflow for neural networks.
-  - Inside of the traffic directory, run ```python traffic.py gtsrb``` to train the network.
+  - Inside of the Neural_Networks/traffic directory, run ```python traffic.py gtsrb``` to train the network.
 
   This project includes a markdown file in which I document my experimentation process and describe how I was investigating different options.
