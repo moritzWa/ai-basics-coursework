@@ -9,7 +9,7 @@ Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai
 - [CS50 AI](https://www.remnote.io/a/-guild-artificial-intelligence-e-g-ai-basics-fall-2020-/5fb8ecbdf80fff004588924d)
 
 ## Projects
-My projects focus on planning because its techniques will be applied in my current CODE project [Study Journey](https://studyjourney.netlify.app/). 
+My projects focus on planning because its techniques will be applied in my current CODE project [Study Journey](https://studyjourney.de/). 
 I focused less on reasoning because there isn't much application of its techniques in our project.
 
 ### Planning
