@@ -132,7 +132,6 @@ class Sentence():
         """
         if cell in self.cells:
             self.cells.remove(cell)
-            self.count -= 1
 
 
 class MinesweeperAI():
@@ -249,10 +248,11 @@ class MinesweeperAI():
         This function may use the knowledge in self.mines, self.safes
         and self.moves_made, but should not modify any of those values.
         """
-        print("SAVE", self.safes)
 
-        if len(self.safes) > 0:
-            return self.safes.pop()
+        save_moves = self.safes - self.moves_made
+
+        if save_moves:
+            return random.choice(list(save_moves))
         else:
             return None
 
@@ -263,6 +263,7 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
+
         available_moves = []
         for row in range(self.height):
             for col in range(self.width):
