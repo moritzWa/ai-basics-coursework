@@ -3,7 +3,7 @@
 Neural network trained on [German Traffic Sign Recognition Benchmark (GTSRB)](http://benchmark.ini.rub.de/?section=gtsrb&subsection=news) dataset.
 
 ## Layer Arrangement
-I implemented a feed-forward convolutional neural network, which has a similar structure to the code used for the handwriting recognition presented during the [lecture](https://video.cs50.io/J1QD9hLDEDY?screen=qNDOwwNlCD0).
+I implemented a feed-forward convolutional neural network, whith a similar structure to the code used for the handwriting recognition presented during the [lecture](https://video.cs50.io/J1QD9hLDEDY?screen=qNDOwwNlCD0).
 
 After adding a second layer of convolution (with a 3x3px kernel) and pooling, I found that the accuracy increased by about 15 percentage points. This presumable happens through more detailed modeling of the street sign images. I also found that increasing the filter size to 64 for that second layer improved accuracy. 
 
